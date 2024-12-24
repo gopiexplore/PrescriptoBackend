@@ -13,7 +13,6 @@ let limitter=rateLimit({
     windowMs:60*60*1000,
     message:"We Are received to Many requests from this IP.please try after one hour "
 })
-app.use(limitter)
 
 //app config
 const app=express();
@@ -24,6 +23,7 @@ connectCloudinary();
 app.use(express.json())
 app.use(cors())
 
+app.use(limitter)
 
 // api endpoint
 app.use('/api/admin',adminRouter)

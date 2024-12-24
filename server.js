@@ -6,6 +6,14 @@ import connectCloudinary from './config/cloudinary.js';
 import adminRouter from './routes/adminRoute.js';
 import doctorRouter from './routes/doctorRoute.js';
 import userRouter from './routes/userRoute.js';
+import rateLimit from 'express-rate-limit'
+
+let limitter=rateLimit({
+    max:3,
+    windowMs:60*60*1000,
+    message:"We Are received to Many requests from this IP.please try after one hour "
+})
+app.use(limitter)
 
 //app config
 const app=express();
